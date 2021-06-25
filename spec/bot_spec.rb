@@ -31,11 +31,23 @@ RSpec.describe 'Bot Spec' do
     expect(expected).to eq([1, 1])
   end
   it 'Can traverse y-axis down and return correct string' do
-    expected = Bot.traverse_yaxis(2, 1)
+    expected = Bot.traverse_axis(2, 1, {"one": "DOWN\n", "two": "UP\n"})
     expect(expected).to eq("DOWN\n")
   end
+  it 'Can traverse y-axis down two and return correct string' do
+    expected = Bot.traverse_axis(3, 1, {"one": "DOWN\n", "two": "UP\n"})
+    expect(expected).to eq("DOWN\nDOWN\n")
+  end
   it 'Can traverse y-axis up and return correct string' do
-    expected = Bot.traverse_yaxis(0, 1)
+    expected = Bot.traverse_axis(0, 1, {"one": "DOWN\n", "two": "UP\n"})
     expect(expected).to eq("UP\n")
+  end
+  it 'Can traverse x-axis left and return correct string' do
+    expected = Bot.traverse_axis(0, 1, {"one": "RIGHT\n", "two": "LEFT\n"})
+    expect(expected).to eq("LEFT\n")
+  end
+  it 'Can traverse x-axis right and return correct string' do
+    expected = Bot.traverse_axis(2, 1, {"one": "RIGHT\n", "two": "LEFT\n"})
+    expect(expected).to eq("RIGHT\n")
   end
 end

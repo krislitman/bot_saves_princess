@@ -2,20 +2,25 @@ class Bot
   def self.displayPathtoPrincess(int, grid)
     princess = find_location(grid, "p")
     mario = find_location(grid, "m")
-    message_one = traverse_yaxis(princess[0], mario[0])
+    message_one = traverse_axis(
+      princess[0], mario[0], {"one": "DOWN\n", "two": "UP\n"}
+      )
+    message_two = traverse_xaxis(
+      princess[1], mario[1], {"one": "RIGHT\n", "two": "LEFT\n"}
+      )
   end
   
-  def self.traverse_yaxis(p, m)
+  def self.traverse_axis(p, m, axis)
     moves = (p - m)
     string = ""
     if moves > 0
       moves.times do 
-        string = string + "DOWN\n"
+        string = string + axis[:one]
       end
     else 
       moves = moves.abs
       moves.times do 
-        string = string + "UP\n"
+        string = string + axis[:two]
       end
     end
     return string
