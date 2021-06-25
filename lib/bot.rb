@@ -3,19 +3,17 @@ class Bot
   def self.displayPathtoPrincess(int, grid)
     princess = find_location(grid, "p")
     mario = find_location(grid, "m")
-    if princess[0] != mario[0]
+    if princess[0] == mario[0]
+      message_one = nil
+    elsif princess[1] == mario[1]
+      message_two = nil
+    else
       message_one = traverse_axis(
         princess[0], mario[0], {"one": "DOWN\n", "two": "UP\n"}
       )
-    else
-      message_one = nil
-    end
-    if princess[1] != mario[1]
       message_two = traverse_axis(
         princess[1], mario[1], {"one": "RIGHT\n", "two": "LEFT\n"}
       )
-    else
-      message_two = nil
     end
     format_message(message_one, message_two)
   end
