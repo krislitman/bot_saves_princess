@@ -30,8 +30,12 @@ RSpec.describe 'Bot Spec' do
     expected = Bot.find_location(array_grid, "m")
     expect(expected).to eq([1, 1])
   end
-  it 'Can traverse y-axis and return correct string' do
+  it 'Can traverse y-axis down and return correct string' do
     expected = Bot.traverse_yaxis(2, 1)
     expect(expected).to eq("DOWN\n")
+  end
+  it 'Can traverse y-axis up and return correct string' do
+    expected = Bot.traverse_yaxis(0, 1)
+    expect(expected).to eq("UP\n")
   end
 end
